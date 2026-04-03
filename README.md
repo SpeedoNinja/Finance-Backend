@@ -1,33 +1,18 @@
-# Finance-Backend
-Scalable Finance Dashboard Backend built with Node.js &amp; Express.js . Feature role based access control (RBAC) , MongoDB Aggregation for real time analytics , and layered services-controller architecture . 
+# Finance Dashboard Backend
 
+## Overview
+This is a Node.js/Express backend designed for a finance management system. It implements Role-Based Access Control (RBAC) to ensure data integrity across different user levels.
 
-# Finance Data Processing & RBAC Backend
+## Key Decisions
+- **Architecture**: Used a Service-Controller pattern to keep business logic (like financial aggregations) separate from HTTP logic.
+- **RBAC**: Implemented a flexible middleware that checks the `x-role` header to simulate authenticated roles (Admin, Analyst, Viewer).
+- **Data Integrity**: Used Mongoose schemas with enums to prevent invalid categories or transaction types.
 
-A professional-grade backend system designed for managing financial records with strict access control. Built with **Node.js**, **Express**, and **MongoDB**.
+## Assumptions
+- For this assessment, authentication is mocked via headers. In a production scenario, this would be replaced by JWT verification.
+- The 'Viewer' role is restricted from any write/update/delete operations to maintain data security.
 
-## 🚀 Key Features
-- **User & Role Management**: Supports Admin, Analyst, and Viewer roles with distinct permission levels.
-- **Financial CRUD**: Full lifecycle management of income and expense entries.
-- **Advanced Analytics**: Dashboard summary API using MongoDB Aggregation for total income, expenses, and net balance.
-- **Secure RBAC**: Custom middleware to enforce role-based restrictions on sensitive endpoints.
-- **Data Integrity**: Schema-level validation and centralized error handling.
-
-## 🏗️ Architecture
-I followed the **Service-Controller-Repository** pattern to ensure a clean separation of concerns:
-- **Controllers**: Handle HTTP requests and responses.
-- **Services**: Contain the core business logic and database aggregations.
-- **Models**: Define data structures and validation rules.
-- **Middleware**: Manages authentication and role authorization.
-
-## 🛠️ Tech Stack
-- **Runtime**: Node.js
-- **Framework**: Express.js
-- **Database**: MongoDB (Mongoose ODM)
-- **Environment**: Dotenv for secure configuration
-
-## 🚦 Getting Started
-
-### Prerequisites
-- Node.js (v14+)
-- MongoDB (Local or Atlas)
+## How to Run
+1. Run `npm install`
+2. Configure `.env` with your MongoDB URI
+3. Run `npm start`

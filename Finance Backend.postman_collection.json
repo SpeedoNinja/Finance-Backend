@@ -1,0 +1,142 @@
+{
+  "info": {
+    "name": "Finance Backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Dashboard - Admin",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-role",
+            "value": "Admin"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/dashboard",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "dashboard"]
+        }
+      }
+    },
+    {
+      "name": "Dashboard - Viewer (403)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-role",
+            "value": "Viewer"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/dashboard",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "dashboard"]
+        }
+      }
+    },
+    {
+      "name": "Get Records - Viewer",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-role",
+            "value": "Viewer"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/records?category=food&type=expense",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "records"],
+          "query": [
+            {
+              "key": "category",
+              "value": "food"
+            },
+            {
+              "key": "type",
+              "value": "expense"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Add Record - Admin",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-role",
+            "value": "Admin"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"amount\": 100,\n  \"type\": \"income\",\n  \"category\": \"salary\",\n  \"description\": \"Monthly salary\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/records",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "records"]
+        }
+      }
+    },
+    {
+      "name": "Update Record - Admin",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "x-role",
+            "value": "Admin"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"amount\": 150\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/records/{{id}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "records", "{{id}}"]
+        }
+      }
+    },
+    {
+      "name": "Delete Record - Admin",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "x-role",
+            "value": "Admin"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/records/{{id}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "records", "{{id}}"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000"
+    }
+  ]
+}
